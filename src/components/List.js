@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react'
-import { DataConsummer, DataContext } from 'stores'
+import { DataContext } from 'stores'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import icNext from 'assets/ic-next.svg'
-import { TimeSelector } from 'components'
 
 const styles = {
     container: styled.div`
@@ -52,33 +51,22 @@ export default function List() {
     let { state } = useContext(DataContext)
     let listData = sortList(state.words, state.timeOffset.value)
 
-    useEffect(() => {
-        listData = sortList(state.words, state.timeOffset.value)
+    useEffect(() => listData = sortList(state.words, state.timeOffset.value))
+
+    return listData.map(item => {
+        return (
+            <Link to={`/word/${item.id}`} key={`word_${item.id}`}>
+                <styles.item>
+
+                    <styles.itemContent>
+                        <span>{item.en}</span>
+                        <span>{item.fr}</span>
+                    </styles.itemContent>
+
+                    <styles.itemArrow></styles.itemArrow>
+
+                </styles.item>
+            </Link>
+        )
     })
-
-    return (
-        <DataConsummer>
-            {({ state }) => (
-                <React.Fragment>
-                    <TimeSelector />
-                    {listData.map(item => {
-                        return (
-                            <Link to={`/word/${item.id}`} key={`word_${item.id}`}>
-                                <styles.item>
-
-                                    <styles.itemContent>
-                                        <span>{item.en}</span>
-                                        <span>{item.fr}</span>
-                                    </styles.itemContent>
-
-                                    <styles.itemArrow></styles.itemArrow>
-
-                                </styles.item>
-                            </Link>
-                        )
-                    })}
-                </React.Fragment>
-            )}
-        </DataConsummer>
-    )
 }

@@ -9,12 +9,12 @@ class DataProvider extends Component {
         super(props)
 
         this.timeOffsets = [
-            { label: '1 day', value: 86400 },
-            { label: '1 week', value: 604800 },
-            { label: '1 month', value: 2419200 },
-            { label: '3 month', value: 7257600 },
-            { label: '6 month', value: 14515200 },
-            { label: '1 year', value: 29030400 },
+            { label: '1 day', value: 86400000 },
+            { label: '1 week', value: 604800000 },
+            { label: '1 month', value: 2419200000 },
+            { label: '3 month', value: 7257600000 },
+            { label: '6 month', value: 14515200000 },
+            { label: '1 year', value: 29030400000 },
             { label: 'All time', value: Date.now() },
         ]
 
@@ -50,6 +50,11 @@ class DataProvider extends Component {
         }
     }
 
+    componentDidMount() {
+        this.timeOffsetIndex = this.timeOffsets.length - 1
+        this.setState({ timeOffset: this.timeOffsets[this.timeOffsetIndex] })
+    }
+
     changeTimeOffset(up = true) {
         if (up) {
             this.timeOffsetIndex + 1 > this.timeOffsets.length - 1 ? this.timeOffsetIndex = 0 : this.timeOffsetIndex += 1
@@ -60,6 +65,7 @@ class DataProvider extends Component {
         this.setState({ timeOffset: this.timeOffsets[this.timeOffsetIndex] })
     }
 
+    // WIP
     addWord(wordEn, wordFr) {
         if (wordEn.length && wordFr.length) {
             const newWord = {
