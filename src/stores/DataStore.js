@@ -52,17 +52,9 @@ class DataProvider extends Component {
 
     changeTimeOffset(up = true) {
         if (up) {
-            if (this.timeOffsetIndex + 1 > this.timeOffsets.length - 1) {
-                this.timeOffsetIndex = 0
-            } else {
-                this.timeOffsetIndex += 1
-            }
+            this.timeOffsetIndex + 1 > this.timeOffsets.length - 1 ? this.timeOffsetIndex = 0 : this.timeOffsetIndex += 1
         } else {
-            if (this.timeOffsetIndex - 1 < 0) {
-                this.timeOffsetIndex = this.timeOffsets.length - 1
-            } else {
-                this.timeOffsetIndex -= 1
-            }
+            this.timeOffsetIndex - 1 < 0 ? this.timeOffsetIndex = this.timeOffsets.length - 1 : this.timeOffsetIndex -= 1
         }
 
         this.setState({ timeOffset: this.timeOffsets[this.timeOffsetIndex] })
