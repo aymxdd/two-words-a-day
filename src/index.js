@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Routes from 'routes';
+import { HashRouter } from 'react-router-dom';
+import GlobalStyles from './styles/global'
 import reportWebVitals from './reportWebVitals';
+import { DataProvider } from 'stores'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <HashRouter>
+    <DataProvider>
+      <Routes />
+      <GlobalStyles />
+    </DataProvider>
+  </HashRouter>,
   document.getElementById('root')
 );
 
