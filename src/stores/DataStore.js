@@ -18,14 +18,14 @@ class DataProvider extends Component {
             { label: 'All time', value: Date.now() },
         ]
 
-        this.timeOffsetIndex = 1
+        this.timeOffsetIndex = this.timeOffsets.length - 1
 
         this.state = {
             timeOffset: { label: 'All time', value: Date.now() },
             words: [
                 {
                     id: 'd7cb95c7-e3a1-45fe-9555-18bd597dbf5b',
-                    created: 1622124095880,
+                    created: 1622125370346,
                     en: 'World',
                     fr: 'Monde',
                     notes: `Il s'agit ici d'une référence au développement !`,
