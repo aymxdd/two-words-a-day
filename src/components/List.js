@@ -1,8 +1,9 @@
-import React from 'react'
-import { DataConsummer } from 'stores'
+import React, { useContext, useEffect } from 'react'
+import { DataConsummer, DataContext } from 'stores'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import icNext from 'assets/ic-next.svg'
+import { TimeSelector } from 'components'
 
 const styles = {
     container: styled.div`
@@ -41,12 +42,26 @@ const styles = {
     `
 }
 
+function sortList(data, offset) {
+    return data.filter(item => Date.now() - item.created < offset).sort(function(x, y){
+        return x.created - y.created;
+    })
+}
+
 export default function List() {
+    let { state } = useContext(DataContext)
+    let listData = sortList(state.words, state.timeOffset.value)
+
+    useEffect(() => {
+        listData = sortList(state.words, state.timeOffset.value)
+    })
+
     return (
         <DataConsummer>
             {({ state }) => (
                 <React.Fragment>
-                    {state.words.map(item => {
+                    <TimeSelector />
+                    {listData.map(item => {
                         return (
                             <Link to={`/word/${item.id}`} key={`word_${item.id}`}>
                                 <styles.item>
