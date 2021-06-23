@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import icPlus from 'assets/ic-plus.svg'
 import icEdit from 'assets/ic-edit.svg'
+import icClose from 'assets/ic-close.svg'
+import icNext from 'assets/ic-next.svg'
 
 const styles = {
     fab: styled.div`
@@ -40,6 +42,8 @@ export default function Fab(props) {
             <styles.fab>
                 {type === 'add' ? <img src={icPlus} alt="" /> : null}
                 {type === 'edit' ? <img src={icEdit} alt="" /> : null}
+                {type === 'close' ? <img src={icClose} alt="" /> : null}
+                {type === 'next' ? <img src={icNext} alt="" /> : null}
             </styles.fab>
         </Link>        
     )

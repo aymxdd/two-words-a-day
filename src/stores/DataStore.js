@@ -53,6 +53,10 @@ class DataProvider extends Component {
     componentDidMount() {
         this.timeOffsetIndex = this.timeOffsets.length - 1
         this.setState({ timeOffset: this.timeOffsets[this.timeOffsetIndex] })
+
+        if (localStorage.getItem('app-data')) {
+            this.setState({ words: JSON.parse(localStorage.getItem('app-data')) })
+        }
     }
 
     changeTimeOffset(up = true) {
@@ -80,15 +84,28 @@ class DataProvider extends Component {
             const newState = this.state.words
             newState.push(newWord)
             this.setState({ words: newState })
+
+            this.persistToLocalStorage()
         }
     }
 
     deleteWord() {
-
+        this.persistToLocalStorage()
     }
 
-    editWord() {
+    editWord(id, value, key) {
+        const currentState = this.state.words
+        const index = currentState.findIndex(item => item.id === id)
 
+        currentState[index][key] = value
+
+        this.setState({ words: currentState })
+
+        this.persistToLocalStorage()
+    }
+
+    persistToLocalStorage() {
+        localStorage.setItem('app-data', JSON.stringify(this.state.words))
     }
 
     render() {
