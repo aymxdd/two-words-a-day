@@ -4,7 +4,7 @@ import { DataContext } from 'stores'
 import HeaderClose from 'components/HeaderClose'
 
 export default function New() {
-    const { state, actions } = useContext(DataContext)
+    // const { state, actions } = useContext(DataContext)
 
     return (
         <containers.main>
