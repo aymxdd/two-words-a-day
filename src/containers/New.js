@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { containers, texts } from 'styles'
-import { DataContext } from 'stores'
 import HeaderClose from 'components/HeaderClose'
+// import { DataContext } from 'stores'
 
 export default function New() {
     // const { state, actions } = useContext(DataContext)
