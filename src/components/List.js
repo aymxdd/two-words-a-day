@@ -49,11 +49,8 @@ function sortList(data, offset) {
 
 export default function List() {
     let { state } = useContext(DataContext)
-    let listData = sortList(state.words, state.timeOffset.value)
 
-    useEffect(() => listData = sortList(state.words, state.timeOffset.value))
-
-    return listData.map(item => {
+    return sortList(state.words, state.timeOffset.value).map(item => {
         return (
             <Link to={`/word/${item.id}`} key={`word_${item.id}`}>
                 <styles.item>
